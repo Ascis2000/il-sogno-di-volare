@@ -1,3 +1,4 @@
+
 const civilAircrafts = [
     'assets/avion-civil-1.jpg',
     'assets/avion-civil-2.jpg',
@@ -32,32 +33,57 @@ const militaryHelicopter = [
 
 class Gallery {
     constructor(civilImages, militaryImages) {
+        this.civilImages = civilImages;
+        this.militaryImages = militaryImages;
     }
     
     getRandomCivil() {
+
+        let numRandom = Math.floor(Math.random() * this.civilImages.length);
+        return this.civilImages[numRandom];
     }
     
     getRandomMilitary() {
+
+        const numRandom = Math.floor(Math.random() * this.militaryImages.length);
+        return this.militaryImages[numRandom];
     }
     
     getAll() {
+
+        return [...this.civilImages, ...this.militaryImages];
     }
 }
 
 class Painter {
+    // la seccion se creara al instanciar un objeto con 'new'
     constructor() {
+        this.gallery = this.createGallery(); 
     }
 
     createGallery() {
+        let section = document.createElement("section");
+        document.body.appendChild(section);
+        return section; 
     }
 
     createImageTag(imageUrl) {
+        let picture = document.createElement("picture");
+        let img = document.createElement("img");
+        img.src = imageUrl;
+        picture.appendChild(img);
+        return picture;
     }
 
     paintSingleImage(imageUrl) {
+        const imageTag = this.createImageTag(imageUrl);
+        this.gallery.appendChild(imageTag);
     }
 
     paintMultipleImages(arrayOfImages) {
+        arrayOfImages.forEach(imageUrl => {
+            this.paintSingleImage(imageUrl);
+        });
     }
 }
 

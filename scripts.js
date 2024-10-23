@@ -50,7 +50,7 @@ class Gallery {
     }
     
     getAll() {
-
+        // combinamos dos arrays con spread operator
         return [...this.civilImages, ...this.militaryImages];
     }
 }
@@ -71,6 +71,7 @@ class Painter {
         let picture = document.createElement("picture");
         let img = document.createElement("img");
         img.src = imageUrl;
+        img.style.width = "150px";
         picture.appendChild(img);
         return picture;
     }
